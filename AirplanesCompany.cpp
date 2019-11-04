@@ -4,40 +4,40 @@
 
 int main()
 {
-	Company c = Company();
-	Wings wings1 = Wings(0);
-	Wings wings2 = Wings(1);
-	Wings wings3 = Wings(3);
+	Company *c = new Company();
+	Wings *wings1 = new Wings(0);
+	Wings *wings2 = new Wings(1);
+	Wings *wings3 = new Wings(3);
 	std::cout <<"Number of wings: " << Wings::countWings << std::endl;
-	c.components.push_back(wings1);
-	c.components.push_back(wings2);
-	c.components.push_back(wings3);
+	c->addComponent(wings1);
+	c->addComponent(wings2);
+	c->addComponent(wings3);
 
-	Engines engines1 = Engines(1000);
-	Engines engines2 = Engines(3000);
-	Engines engines3 = Engines(5000);
+	Engines *engines1 = new Engines(1000);
+	Engines *engines2 = new Engines(3000);
+	Engines *engines3 = new Engines(5000);
 	std::cout << "Number of engines: " << Engines::countEngines << std::endl;
-	c.components.push_back(engines1);
-	c.components.push_back(engines2);
-	c.components.push_back(engines3);
+	c->addComponent(engines1);
+	c->addComponent(engines2);
+	c->addComponent(engines3);
 	
-	Body body1 = Body(1);
-	Body body2 = Body(2);
-	Body body3 = Body(3);
+	Body *body1 = new Body(1);
+	Body *body2 = new Body(2);
+	Body *body3 = new Body(3);
 	std::cout << "Number of bodies: " << Body::countBodies << std::endl;
-	c.components.push_back(body1);
-	c.components.push_back(body2);
-	c.components.push_back(body3);
+	c->addComponent(body1);
+	c->addComponent(body2);
+	c->addComponent(body3);
 
 	std::cout << "View components: " << std::endl;
-	c.viewComponents();
-
-	c.createCargoAirplane(wings1, engines1, body2, "white");
-	c.createPassengerAirplane(wings2, engines2, body1, 60);
-	c.createCargoAirplane(wings3, engines3, body3, "white");
+	c->viewComponents();
+	
+	c->createCargoAirplane(wings1, engines1, body2, "white");
+	c->createPassengerAirplane(wings2, engines2, body1, 60);
+	c->createCargoAirplane(wings3, engines3, body3, "white");
 
 	std::cout << "View created airplanes: " << std::endl;
-	c.viewAirplanes();
+	c->viewAirplanes();
 
 	return 0;
 }

@@ -14,15 +14,14 @@ using namespace std;
 class Airport
 {
 public:
-	list<Airplane> airplanes;
+	list<Airplane*> airplanes;
 	Airport();
 	~Airport();
-	void addCargoAirplane();
-	void addPassengerAirplane();
+	void addAirplane(Airplane *airplane);
 	void viewAirplanes();
-	void deleteAirplaneById(int i);
-	void viewFunctionalAirplanes();
-	void viewUnfunctionalAirplanes();
+	void deleteAirplaneById(int id);
+	void viewFunctionalAirplanes(int id);
+	void viewUnfunctionalAirplanes(int id);
 };
 
 #endif // AIRPORT_HPP

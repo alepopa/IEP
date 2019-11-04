@@ -15,7 +15,7 @@ class Component
 public:
 	Component();
 	~Component();
-	void list();
+	virtual void list();
 };
 
 class Wings : public Component
@@ -26,11 +26,11 @@ private:
 
 public:
 	static int countWings;
-	Wings(int f);
+	Wings(bool f);
 	Wings();
 	~Wings();
-	void setIsFunctional(int f);
-	int fly();
+	void setIsFunctional(bool f);
+	void fly();
 	void list();
 };
 
@@ -67,16 +67,16 @@ public:
 class Airplane
 {
 private:
-	Wings wings;
-	Engines engines;
-	Body body;
+	Wings *wings;
+	Engines *engines;
+	Body *body;
 
 public:
 	Airplane();
 	~Airplane();
-	Airplane(Wings w, Engines e, Body b);
+	Airplane(Wings *w, Engines *e, Body *b);
 	int getAirplaneId();
-	int getFunctionality();
+	void setIsFunctional(bool value);
 	virtual void print();
 };
 
@@ -88,7 +88,7 @@ private:
 public:
 	CargoAirplane();
 	~CargoAirplane();
-	CargoAirplane(Wings w, Engines e, Body b, string c);
+	CargoAirplane(Wings *w, Engines *e, Body *b, string c);
 	void setColor(std::string c);
 	std::string getColor();
 	void print();
@@ -102,7 +102,7 @@ private:
 public:
 	PassengerAirplane();
 	~PassengerAirplane();
-	PassengerAirplane(Wings w, Engines e, Body b, int n);
+	PassengerAirplane(Wings *w, Engines *e, Body *b, int n);
 	void setNoPassengers(int n);
 	int getNoPassengers();
 	void print();
@@ -111,14 +111,15 @@ public:
 class Company
 {
 public:
-	list<Airplane> airplanes;
-	list<Component> components;
+	list<Airplane *> airplanes;
+	list<Component *> components;
 	Company();
 	~Company();
 	void viewComponents();
 	void viewAirplanes();
-	void createCargoAirplane(Wings w, Engines e, Body b, std::string color);
-	void createPassengerAirplane(Wings w, Engines e, Body b, int noPassengers);
+	void addComponent(Component* component);
+	void createCargoAirplane(Wings *w, Engines *e, Body *b, std::string color);
+	void createPassengerAirplane(Wings *w, Engines *e, Body *b, int noPassengers);
 };
 
 #endif // AIRPLANE_HPP
